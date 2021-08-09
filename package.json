@@ -2,7 +2,7 @@
   "name": "depay-react-token-image",
   "moduleName": "ReactTokenImage",
   "version": "1.0.0",
-  "description": "",
+  "description": "React component to display token images with fallbacks and unknown state.",
   "main": "./dist/cjs/index.js",
   "files": [
     "dist"
