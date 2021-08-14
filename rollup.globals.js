@@ -1,5 +1,6 @@
 export default {
   'react': 'React',
   'react-dom': 'ReactDOM',
-  'depay-react-dialog': 'ReactDialog'
+  'depay-web3-constants': 'Web3Constants',
+  'depay-web3-blockchains': 'Web3Blockchains',
 }

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Blockchain } from 'depay-web3-blockchains';
+import { CONSTANTS } from 'depay-web3-constants';
 
 const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-token-image/src/index.jsx";
 let TokenImage = function(props){
@@ -9,7 +11,13 @@ let TokenImage = function(props){
   const blockchain = props.blockchain.toLowerCase();
   const address = props.address;
 
-  useEffect(()=>setSrc(trustWalletAddress({ blockchain, address })), [blockchain, address]);
+  useEffect(()=>{
+    if(CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
+      setSrc(Blockchain.findByName(blockchain).logo);
+    } else {
+      setSrc(trustWalletAddress({ blockchain, address }));
+    }
+  }, [blockchain, address]);
   
   const trustWalletAddress = ({ blockchain, address })=> {
     return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${blockchain}/assets/${address}/logo.png`
@@ -25,10 +33,12 @@ let TokenImage = function(props){
     }
   };
 
+  if(src == undefined) { return null }
+
   return(
     React.createElement('img', {
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 28}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 38}}
     )
   )
 };

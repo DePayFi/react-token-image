@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/depay-web3-blockchains@2/dist/umd/index.js"></script>
+    <script crossorigin src="https://unpkg.com/depay-web3-constants@2/dist/umd/index.js"></script>
     <script src="dist/umd/index.dev.js"></script>
   </head>
   <body>
     <div id="tokenOne" class="container d-flex justify-content-center pt-5"></div>
     <div id="tokenTwo" class="container d-flex justify-content-center pt-5"></div>
     <div style="background: red; width: 80px; height:  80px; border-radius: 999px;" id="tokenThree" class="container d-flex justify-content-center pt-5"></div>
+    <div id="tokenFour" class="container d-flex justify-content-center pt-5"></div>
     <script>
       ReactDOM.render(
         React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'ethereum', address: '0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb' }),
@@ -26,6 +29,10 @@
       ReactDOM.render(
         React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'ethereum', address: '0xa0bed124a09ac2Bd941b0349d8d224fe3c955eb' }),
         document.getElementById('tokenThree')
+      )
+      ReactDOM.render(
+        React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'ethereum', address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' }),
+        document.getElementById('tokenFour')
       )
     </script>
   </body>

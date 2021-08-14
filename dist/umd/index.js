@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.React));
-}(this, (function (exports, React) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('depay-web3-blockchains'), require('depay-web3-constants')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'react', 'depay-web3-blockchains', 'depay-web3-constants'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.React, global.Web3Blockchains, global.Web3Constants));
+}(this, (function (exports, React, depayWeb3Blockchains, depayWeb3Constants) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -17,7 +17,13 @@
     const blockchain = props.blockchain.toLowerCase();
     const address = props.address;
 
-    React.useEffect(()=>setSrc(trustWalletAddress({ blockchain, address })), [blockchain, address]);
+    React.useEffect(()=>{
+      if(depayWeb3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
+        setSrc(depayWeb3Blockchains.Blockchain.findByName(blockchain).logo);
+      } else {
+        setSrc(trustWalletAddress({ blockchain, address }));
+      }
+    }, [blockchain, address]);
     
     const trustWalletAddress = ({ blockchain, address })=> {
       return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${blockchain}/assets/${address}/logo.png`
@@ -33,10 +39,12 @@
       }
     };
 
+    if(src == undefined) { return null }
+
     return(
       React__default['default'].createElement('img', {
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 28}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 38}}
       )
     )
   };
