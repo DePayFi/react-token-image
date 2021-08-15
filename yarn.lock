@@ -2229,10 +2229,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-depay-web3-blockchains@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/depay-web3-blockchains/-/depay-web3-blockchains-2.1.0.tgz#1b16e50a027763150d962b498a8d2e60822a0892"
-  integrity sha512-oKoSZaNkIzkSCiiIXZkdogRO41m3RH4Eka1HufDOoLe1p+90WJjPqW9ABVPAkxGItJXrtUaIJs0+gsZ9ZdEzhw==
+depay-web3-blockchains@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/depay-web3-blockchains/-/depay-web3-blockchains-2.1.1.tgz#c439e47cefe4d8655ff0517f9256803b64fbe05b"
+  integrity sha512-3DOyDJPx17K1CX/VuLlfKh72uQU3OkVoTEzvz90izTZzWNUwc5PBdLxO9IaW4djBU7JBEXYVVM8ZhDBnSB/ojg==
 
 depay-web3-constants@^2.1.0:
   version "2.1.0"
