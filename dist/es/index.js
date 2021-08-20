@@ -20,7 +20,18 @@ let TokenImage = function(props){
   }, [blockchain, address]);
   
   const trustWalletAddress = ({ blockchain, address })=> {
-    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${blockchain}/assets/${address}/logo.png`
+    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+  };
+
+  const mapBlockchainName = (blockchain)=>{
+    switch (blockchain) {
+      case 'ethereum':
+        return 'ethereum'
+      case 'bsc':
+        return 'smartchain'
+      default:
+        throw('DePayReactTokenImage: Unknown blockchain')
+    }
   };
 
   const handleLoadError = (error)=> {
@@ -38,7 +49,7 @@ let TokenImage = function(props){
   return(
     React.createElement('img', {
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 38}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 51}}
     )
   )
 };
