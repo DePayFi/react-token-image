@@ -17,6 +17,7 @@
     <div id="tokenTwo" class="container d-flex justify-content-center pt-5"></div>
     <div style="background: red; width: 80px; height:  80px; border-radius: 999px;" id="tokenThree" class="container d-flex justify-content-center pt-5"></div>
     <div id="tokenFour" class="container d-flex justify-content-center pt-5"></div>
+    <div id="tokenFive" class="container d-flex justify-content-center pt-5"></div>
     <script>
       ReactDOM.render(
         React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'ethereum', address: '0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb' }),
@@ -33,6 +34,10 @@
       ReactDOM.render(
         React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'ethereum', address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' }),
         document.getElementById('tokenFour')
+      )
+      ReactDOM.render(
+        React.createElement(window.ReactTokenImage.TokenImage, { blockchain: 'bsc', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' }),
+        document.getElementById('tokenFive')
       )
     </script>
   </body>

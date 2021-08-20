@@ -17,6 +17,20 @@ describe('ReactTokenImage', () => {
       })
     })
   })
+  
+  it('Loads token images from Trust Wallet correctly for bsc', () => {
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        ReactDOM.render(
+          React.createElement(TokenImage, { blockchain: 'bsc', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' }),
+          document.getElementById('app')
+        )
+
+        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82/logo.png')
+      })
+    })
+  })
 
   it('Loads token images from DePay PRO if Trust Wallet image was not found', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
@@ -73,4 +87,5 @@ describe('ReactTokenImage', () => {
       })
     })
   })    
+
 })
