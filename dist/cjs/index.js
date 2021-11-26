@@ -3,14 +3,14 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
-var depayWeb3Blockchains = require('depay-web3-blockchains');
-var depayWeb3Constants = require('depay-web3-constants');
+var web3Blockchains = require('@depay/web3-blockchains');
+var web3Constants = require('@depay/web3-constants');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-token-image/src/index.jsx";
+const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.jsx";
 let TokenImage = function(props){
 
   const [src, setSrc] = React.useState();
@@ -20,8 +20,8 @@ let TokenImage = function(props){
   const address = props.address;
 
   React.useEffect(()=>{
-    if(depayWeb3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
-      setSrc(depayWeb3Blockchains.Blockchain.findByName(blockchain).logo);
+    if(web3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
+      setSrc(web3Blockchains.Blockchain.findByName(blockchain).logo);
     } else {
       setSrc(trustWalletAddress({ blockchain, address }));
     }

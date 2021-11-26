@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Blockchain } from 'depay-web3-blockchains';
-import { CONSTANTS } from 'depay-web3-constants';
+import { Blockchain } from '@depay/web3-blockchains';
+import { CONSTANTS } from '@depay/web3-constants';
 
-const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-token-image/src/index.jsx";
+const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.jsx";
 let TokenImage = function(props){
 
   const [src, setSrc] = useState();

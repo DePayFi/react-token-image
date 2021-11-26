@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Blockchain } from 'depay-web3-blockchains'
-import { CONSTANTS } from 'depay-web3-constants'
+import { Blockchain } from '@depay/web3-blockchains'
+import { CONSTANTS } from '@depay/web3-constants'
 
 let TokenImage = function(props){
 

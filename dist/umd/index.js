@@ -1,14 +1,14 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('depay-web3-blockchains'), require('depay-web3-constants')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react', 'depay-web3-blockchains', 'depay-web3-constants'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@depay/web3-blockchains'), require('@depay/web3-constants')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'react', '@depay/web3-blockchains', '@depay/web3-constants'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.React, global.Web3Blockchains, global.Web3Constants));
-}(this, (function (exports, React, depayWeb3Blockchains, depayWeb3Constants) { 'use strict';
+}(this, (function (exports, React, web3Blockchains, web3Constants) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-  const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-token-image/src/index.jsx";
+  const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.jsx";
   let TokenImage = function(props){
 
     const [src, setSrc] = React.useState();
@@ -18,8 +18,8 @@
     const address = props.address;
 
     React.useEffect(()=>{
-      if(depayWeb3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
-        setSrc(depayWeb3Blockchains.Blockchain.findByName(blockchain).logo);
+      if(web3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
+        setSrc(web3Blockchains.Blockchain.findByName(blockchain).logo);
       } else {
         setSrc(trustWalletAddress({ blockchain, address }));
       }

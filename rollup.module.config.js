@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
-import globals from './rollup.globals'
+import globals from './rollup.globals.js'
 import pkg from './package.json'
 import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
@@ -21,8 +21,8 @@ export default {
     },
     {
       format: 'umd',
-      globals: globals,
       name: pkg.moduleName,
+      globals: globals,
       file: 'dist/umd/index.js'
     },
   ],
@@ -33,10 +33,10 @@ export default {
   plugins: [
     sucrase({
       exclude: ['node_modules/**'],
-      transforms: ['typescript', 'jsx']
+      transforms: ['jsx']
     }),
     resolve({
-      extensions: ['.js', '.ts', '.jsx']
+      extensions: ['.js',  '.jsx']
     }),
     nodeResolve(),
     commonjs({
