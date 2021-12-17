@@ -32,7 +32,7 @@ describe('ReactTokenImage', () => {
     })
   })
 
-  it('Loads token images from DePay PRO if Trust Wallet image was not found', () => {
+  it('Loads token images from DePay if Trust Wallet image was not found', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
@@ -41,7 +41,7 @@ describe('ReactTokenImage', () => {
           document.getElementById('app')
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://api.depay.pro/v1/images/tokens/ethereum/0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb')
+        cy.get('img').should('have.attr', 'src', 'https://integrate.depay.fi/tokens/ethereum/0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb/image')
       })
     })
   })
