@@ -1,17 +1,17 @@
 ## Quickstart
 
 ```
-yarn add depay-react-token-image
+yarn add @depay/react-token-image
 ```
 
 or 
 
 ```
-npm install --save depay-react-token-image
+npm install --save @depay/react-token-image
 ```
 
 ```javascript
-import { TokenImage } from 'depay-react-token-image'
+import { TokenImage } from '@depay/react-token-image'
 
 render() {
   return(
