@@ -16,12 +16,12 @@ import { TokenImage } from '@depay/react-token-image'
 render() {
   return(
     <TokenImage
+      className="custom-img-class-name"
       blockchain={'ethereum'}
       address={'0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb'}
     />
   )
 }
-
 ```
 
 ## Functionalities

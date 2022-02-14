@@ -54,6 +54,7 @@
 
     return(
       React__default['default'].createElement('img', {
+        className:  props.className ,
         src:  src ,
         onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 51}}
       )

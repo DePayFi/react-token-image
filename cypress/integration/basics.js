@@ -17,6 +17,20 @@ describe('ReactTokenImage', () => {
       })
     })
   })
+
+  it('applies given className', () => {
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        ReactDOM.render(
+          React.createElement(TokenImage, { blockchain: 'bsc', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', className: 'custom-class-name' }),
+          document.getElementById('app')
+        )
+
+        cy.get('img').should('have.attr', 'class', 'custom-class-name')
+      })
+    })
+  })
   
   it('Loads token images from Trust Wallet correctly for bsc', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {

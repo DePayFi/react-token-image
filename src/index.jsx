@@ -49,6 +49,7 @@ let TokenImage = function(props){
 
   return(
     <img
+      className={ props.className }
       src={ src }
       onError={ handleLoadError }
     />
