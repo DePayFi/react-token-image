@@ -24,6 +24,14 @@ render() {
 }
 ```
 
+## Support
+
+This library supports the following blockchains:
+
+- [Ethereum](https://ethereum.org)
+- [BNB Smart Chain](https://www.binance.org/smartChain)
+- [Polygon](https://polygon.technology)
+
 ## Functionalities
 
 ### TokenImage
