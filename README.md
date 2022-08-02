@@ -41,7 +41,7 @@ The TokenImage component tries to display a token image for a given `blockchain`
 
 1. Trying to fetch the image from https://github.com/trustwallet/assets
 
-2. Trying to fetch the image from [DePay API](https://depay.fi/documentation/api)
+2. Trying to fetch the image from [DePay API](https://depay.com/documentation/api)
 
 ## Development
 
