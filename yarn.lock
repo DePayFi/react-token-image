@@ -960,15 +960,15 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@depay/web3-blockchains@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-4.5.0.tgz#b959b3cb57300a4d163b26ea42aee792ad89d3ce"
-  integrity sha512-UhHb+uRjEnQRNC65Jdnq9dP9ANg/gzO8IE5eXx3uG6rr1rTAmq0jRmB447JtPDgestZ/BDOryhHSWUlGT6ak7Q==
+"@depay/web3-blockchains@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-5.0.4.tgz#2fc92d733853b765f3601b187bf21bdde0e1e997"
+  integrity sha512-BAkLqldl6CbQP70m03U0dXE+zpWLd34Zz9d5Jv27fbfzk3MOBn0O+jYfVbRclXL7DS63y6Y74rRS+W0vaq1BBg==
 
-"@depay/web3-constants@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@depay/web3-constants/-/web3-constants-5.1.0.tgz#428a3f252278018847152ae7eb874ef21b69d74b"
-  integrity sha512-igdkNmWLbhL0TZHUkCJ7DXYXdYVTKOKSD+usWgawuNNejhmk4qaq5d+m5awwlZyFX0PZbiLPrTGRvbWsjVQRhQ==
+"@depay/web3-constants@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@depay/web3-constants/-/web3-constants-6.2.1.tgz#32d1662d3febb4bc2edc297b26f581ebad7d1887"
+  integrity sha512-r1fTy1P4JQWdo+1UE1JmOjt4p7BFQSzTOE4Voqoo5asddJb8NUjNEc6pjB1TDaurp7yBJ3Jpsf+P18Mno3xZvg==
 
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"

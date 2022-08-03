@@ -37,6 +37,8 @@
           return 'smartchain'
         case 'polygon':
           return 'polygon'
+        case 'solana':
+          return 'solana'
         default:
           throw('DePayReactTokenImage: Unknown blockchain')
       }
@@ -58,7 +60,7 @@
       React__default['default'].createElement('img', {
         className:  props.className ,
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 54}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
       )
     )
   };

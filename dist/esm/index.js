@@ -31,6 +31,8 @@ let TokenImage = function(props){
         return 'smartchain'
       case 'polygon':
         return 'polygon'
+      case 'solana':
+        return 'solana'
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
     }
@@ -52,7 +54,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 54}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
     )
   )
 };

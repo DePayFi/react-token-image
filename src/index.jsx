@@ -33,6 +33,9 @@ let TokenImage = function(props){
       case 'polygon':
         return 'polygon'
         break;
+      case 'solana':
+        return 'solana'
+        break;
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
     }
