@@ -74,7 +74,7 @@ describe('ReactTokenImage', () => {
           React.createElement(TokenImage, { blockchain: 'ethereum', address: '0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://integrate.depay.fi/tokens/ethereum/0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb/image')
+        cy.get('img').should('have.attr', 'src', 'https://integrate.depay.com/tokens/ethereum/0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb/image')
       })
     })
   })
