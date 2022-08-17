@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-token-image",
   "moduleName": "ReactTokenImage",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "description": "React component to display token images with fallbacks and unknown state.",
   "main": "./dist/umd/index.js",
   "module": "./dist/esm/index.js",
@@ -34,10 +34,9 @@
   },
   "homepage": "https://github.com/DePayFi/react-token-image#readme",
   "private": false,
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "@depay/web3-blockchains": "^5.0.4",
+    "@depay/web3-blockchains": "^6.0.2",
     "@depay/web3-constants": "^6.2.1",
     "react": "^18",
     "react-dom": "^18"
@@ -49,7 +48,7 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
-    "@depay/web3-blockchains": "^5.0.4",
+    "@depay/web3-blockchains": "^6.0.2",
     "@depay/web3-constants": "^6.2.1",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
@@ -70,6 +69,7 @@
     "react-testing-library": "^8.0.1",
     "rollup": "^2.34.2",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-serve": "^1.1.0"
+    "rollup-plugin-serve": "^1.1.0",
+    "webpack": "^5.74.0"
   }
 }
