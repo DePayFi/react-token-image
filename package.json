@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-token-image",
   "moduleName": "ReactTokenImage",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "React component to display token images with fallbacks and unknown state.",
   "main": "./dist/umd/index.js",
   "module": "./dist/esm/index.js",
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/DePayFi/react-token-image/issues"
   },
-  "homepage": "https://github.com/DePayFi/react-token-image#readme",
+  "homepage": "https://depay.com",
   "private": false,
   "dependencies": {},
   "peerDependencies": {
