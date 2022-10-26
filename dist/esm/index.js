@@ -6,7 +6,7 @@ const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js
 let TokenImage = function(props){
 
   const [src, setSrc] = useState();
-  const [source, setSource] = useState('trustwallet');
+  const [source, setSource] = useState('repository');
 
   const blockchain = props.blockchain.toLowerCase();
   const address = props.address;
@@ -15,12 +15,16 @@ let TokenImage = function(props){
     if(CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
       setSrc(Blockchain.findByName(blockchain).logo);
     } else {
-      setSrc(trustWalletAddress({ blockchain, address }));
+      setSrc(logoFromRepository({ blockchain, address }));
     }
   }, [blockchain, address]);
   
-  const trustWalletAddress = ({ blockchain, address })=> {
-    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+  const logoFromRepository = ({ blockchain, address })=> {
+    if(['ethereum', 'bsc', 'polygon', 'solana'].includes(blockchain)) {
+      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+    } else if(blockchain == 'velas'){
+      return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
+    }
   };
 
   const mapBlockchainName = (blockchain)=>{
@@ -39,7 +43,7 @@ let TokenImage = function(props){
   };
 
   const handleLoadError = (error)=> {
-    if(source == 'trustwallet') {
+    if(source == 'repository') {
       setSource('depay');
       setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
     } else {
@@ -54,7 +58,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 61}}
     )
   )
 };

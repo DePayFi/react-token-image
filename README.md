@@ -32,6 +32,7 @@ This library supports the following blockchains:
 - [BNB Smart Chain](https://www.binance.org/smartChain)
 - [Polygon](https://polygon.technology)
 - [Solana](https://solana.com)
+- [Velas](https://velas.com)
 
 ## Functionalities
 
@@ -39,7 +40,7 @@ This library supports the following blockchains:
 
 The TokenImage component tries to display a token image for a given `blockchain` and `address` by:
 
-1. Trying to fetch the image from https://github.com/trustwallet/assets
+1. Trying to fetch the image from https://github.com/trustwallet/assets, or https://github.com/wagyuswapapp/assets (Velas)
 
 2. Trying to fetch the image from [DePay API](https://depay.com/documentation/api)
 

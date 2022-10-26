@@ -12,7 +12,7 @@
   let TokenImage = function(props){
 
     const [src, setSrc] = React.useState();
-    const [source, setSource] = React.useState('trustwallet');
+    const [source, setSource] = React.useState('repository');
 
     const blockchain = props.blockchain.toLowerCase();
     const address = props.address;
@@ -21,12 +21,16 @@
       if(web3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
         setSrc(web3Blockchains.Blockchain.findByName(blockchain).logo);
       } else {
-        setSrc(trustWalletAddress({ blockchain, address }));
+        setSrc(logoFromRepository({ blockchain, address }));
       }
     }, [blockchain, address]);
     
-    const trustWalletAddress = ({ blockchain, address })=> {
-      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+    const logoFromRepository = ({ blockchain, address })=> {
+      if(['ethereum', 'bsc', 'polygon', 'solana'].includes(blockchain)) {
+        return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+      } else if(blockchain == 'velas'){
+        return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
+      }
     };
 
     const mapBlockchainName = (blockchain)=>{
@@ -45,7 +49,7 @@
     };
 
     const handleLoadError = (error)=> {
-      if(source == 'trustwallet') {
+      if(source == 'repository') {
         setSource('depay');
         setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
       } else {
@@ -60,7 +64,7 @@
       React__default['default'].createElement('img', {
         className:  props.className ,
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 61}}
       )
     )
   };
