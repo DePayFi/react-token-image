@@ -60,7 +60,7 @@ let TokenImage = function(props){
       setSource('depay')
       setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`)
     } else if (source == 'depay' && supported.evm.includes(blockchain)) {
-      request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [0] }).then(async(tokenURI)=>{
+      request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(async(tokenURI)=>{
         if(tokenURI.match(/^ipfs/)) {
           tokenURI = `https://ipfs.io/ipfs/${tokenURI.split('://')[1]}`
         }
@@ -102,4 +102,3 @@ let TokenImage = function(props){
 export {
   TokenImage
 }
-

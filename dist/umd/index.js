@@ -65,7 +65,7 @@
         setSource('depay');
         setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
       } else if (source == 'depay' && supported.evm.includes(blockchain)) {
-        web3Client.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [0] }).then(async(tokenURI)=>{
+        web3Client.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(async(tokenURI)=>{
           if(tokenURI.match(/^ipfs/)) {
             tokenURI = `https://ipfs.io/ipfs/${tokenURI.split('://')[1]}`;
           }
