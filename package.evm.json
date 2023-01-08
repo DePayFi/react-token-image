@@ -1,0 +1,37 @@
+{
+  "name": "@depay/react-token-image",
+  "moduleName": "ReactTokenImage",
+  "version": "4.5.0",
+  "description": "React component to display token images with fallbacks and unknown state.",
+  "main": "./dist/umd/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:DePayFi/react-token-image.git",
+  "keywords": [
+    "react",
+    "token",
+    "image",
+    "crypto",
+    "cryptocurrencies"
+  ],
+  "author": "depay.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DePayFi/react-token-image/issues"
+  },
+  "homepage": "https://depay.com",
+  "private": false,
+  "peerDependencies": {
+    "@depay/web3-blockchains": "^6.3.2",
+    "@depay/web3-constants": "^6.3.2",
+    "@depay/web3-client-evm": "^10.3.1",
+    "ethers": "^5.7.1",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

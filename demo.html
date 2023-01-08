@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="https://depay.com/favicon.png"/>
     <title>Development</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js" type="application/javascript"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script crossorigin src="https://unpkg.com/@depay/web3-blockchains@5/dist/umd/index.js"></script>
-    <script crossorigin src="https://unpkg.com/@depay/web3-constants@6/dist/umd/index.js"></script>
+    <script crossorigin src="https://unpkg.com/@depay/web3-blockchains@6"></script>
+    <script crossorigin src="https://unpkg.com/@depay/solana-web3.js@1"></script>
+    <script crossorigin src="https://unpkg.com/@depay/web3-constants@6"></script>
+    <script crossorigin src="https://unpkg.com/@depay/web3-client@10"></script>
     <script src="/dist/umd/index.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5/dist/css/bootstrap.css">
     <style>
@@ -202,6 +205,28 @@
           <div class="px-0 py-4 rounded-lg bg-white border">
             <div class="col px-0">
               <div class="overflow-auto">
+                <h5 class="px-4 pb-4">Velas Token from Wagyu</h5>
+                <div class="px-4">
+                  <div id="velasTokenFromWagyu" class="container d-flex justify-content-center token-image pt-2"></div>
+                </div>
+              </div>
+              <div class="px-4 pt-3">
+                <script>
+                  ReactDOM.createRoot(
+                    document.getElementById('velasTokenFromWagyu')
+                  ).render(
+                    React.createElement(window.ReactTokenImage.TokenImage, { className:"Token", blockchain: 'velas', address: '0xabf26902fd7b624e0db40d31171ea9dddf078351' }),
+                  )
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-block d-md-inline-block p-2 col-12 col-md-4">
+          <div class="px-0 py-4 rounded-lg bg-white border">
+            <div class="col px-0">
+              <div class="overflow-auto">
                 <h5 class="px-4 pb-4">Solana Token from DePay API</h5>
                 <div class="px-4">
                   <div id="solanaTokenFromDepayApi" class="container d-flex justify-content-center token-image pt-2"></div>
@@ -323,6 +348,50 @@
                     document.getElementById('tokenSeven')
                   ).render(
                     React.createElement(window.ReactTokenImage.TokenImage, { className:"Token", blockchain: 'solana', address: '11111111111111111111111111111111' })
+                  )
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-block d-md-inline-block p-2 col-12 col-md-4">
+          <div class="px-0 py-4 rounded-lg bg-white border">
+            <div class="col px-0">
+              <div class="overflow-auto">
+                <h5 class="px-4 pb-4">Token: Native VELAS</h5>
+                <div class="px-4">
+                  <div id="tokenNativeVelas" class="container d-flex justify-content-center token-image pt-2"></div>
+                </div>
+              </div>
+              <div class="px-4 pt-3">
+                <script>
+                  ReactDOM.createRoot(
+                    document.getElementById('tokenNativeVelas')
+                  ).render(
+                    React.createElement(window.ReactTokenImage.TokenImage, { className:"Token", blockchain: 'velas', address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' })
+                  )
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-block d-md-inline-block p-2 col-12 col-md-4">
+          <div class="px-0 py-4 rounded-lg bg-white border">
+            <div class="col px-0">
+              <div class="overflow-auto">
+                <h5 class="px-4 pb-4">NFT Example: through JSON meta data</h5>
+                <div class="px-4">
+                  <div id="nftJsonMetaData" class="container d-flex justify-content-center token-image pt-2"></div>
+                </div>
+              </div>
+              <div class="px-4 pt-3">
+                <script>
+                  ReactDOM.createRoot(
+                    document.getElementById('nftJsonMetaData')
+                  ).render(
+                    React.createElement(window.ReactTokenImage.TokenImage, { className:"Token", blockchain: 'ethereum', address: '0x90B3832e2F2aDe2FE382a911805B6933C056D6ed' })
                   )
                 </script>
               </div>
