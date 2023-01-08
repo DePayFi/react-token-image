@@ -7,7 +7,7 @@ import sucrase from '@rollup/plugin-sucrase'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 export default {
-  input: 'src/index.evm.jsx',
+  input: 'src/index.evm.js',
   output: [
     {
       format: 'es',
