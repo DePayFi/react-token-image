@@ -152,5 +152,20 @@ describe('ReactTokenImage', () => {
         cy.get('img').should('have.attr', 'src', 'https://ipfs.io/ipfs/bafkreibfuo46w3ryuwdvditqqmvr4bq5mirq3vdflize4yn3ydeshikava')
       })
     })
+  }) 
+
+  it('renders NFT token images for opensea store front', () => {
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        ReactDOM.createRoot(
+          document.getElementById('app')
+        ).render(
+          React.createElement(TokenImage, { blockchain: 'ethereum', address: '0x495f947276749ce646f68ac8c248420045cb7b5e', id: '42745998150656004690816543961586238000273307462307754421658803578179357246440' }),
+        )
+
+        cy.get('img').should('have.attr', 'src', 'https://i.seadn.io/gae/QoI3fS0edO_qc3RNXEy5O4Utujvsy3Dzn8FRgFK092ZTO1OE18FWWaKZKJnsE0SXrdy1APX793P45UHTyWb_ttZ402-YGeJsWnCcJno?w=500&auto=format')
+      })
+    })
   })    
 })

@@ -44,6 +44,21 @@ The TokenImage component tries to display a token image for a given `blockchain`
 
 2. Trying to fetch the image from [DePay API](https://depay.com/documentation/api)
 
+3. Trying to fetch an image through NFT token meta data
+
+### NFT Images
+
+Pass an additional `id` if token address contains multiple NFTs:
+
+```javascript
+<TokenImage
+  blockchain={'ethereum'}
+  address={'0x495f947276749ce646f68ac8c248420045cb7b5e'}
+  id={'42745998150656004690816543961586238000273307462307754421658803578179357246440'}
+/>
+```
+
+
 ## Development
 
 ### Get started
