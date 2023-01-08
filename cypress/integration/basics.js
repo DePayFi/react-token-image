@@ -149,7 +149,7 @@ describe('ReactTokenImage', () => {
           React.createElement(TokenImage, { blockchain: 'ethereum', address: '0x90B3832e2F2aDe2FE382a911805B6933C056D6ed' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://ipfs.io/ipfs/bafkreidbuvp2set57q3hsiiglq5sy3lj5hskhfamf2cnux7zayyrxnr5ji')
+        cy.get('img').should('have.attr', 'src', 'https://ipfs.io/ipfs/bafkreibfuo46w3ryuwdvditqqmvr4bq5mirq3vdflize4yn3ydeshikava')
       })
     })
   })    
