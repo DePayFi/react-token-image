@@ -1,10 +1,10 @@
 {
-  "name": "@depay/react-token-image-evm",
+  "name": "@depay/react-token-image-solana",
   "moduleName": "ReactTokenImage",
   "version": "4.7.0",
   "description": "React component to display token images with fallbacks and unknown state.",
-  "main": "./dist/umd/index.evm.js",
-  "module": "./dist/esm/index.evm.js",
+  "main": "./dist/umd/index.solana.js",
+  "module": "./dist/esm/index.solana.js",
   "files": [
     "dist"
   ],
@@ -26,7 +26,7 @@
   "peerDependencies": {
     "@depay/web3-blockchains": "^6.5.1",
     "@depay/web3-constants": "^6.4.2",
-    "@depay/web3-client-evm": "^10.6.2",
+    "@depay/web3-client-solana": "^10.6.2",
     "ethers": "^5.7.1",
     "react": "^18",
     "react-dom": "^18"

@@ -1,8 +1,22 @@
+/*#if _EVM
+
+import { request } from '@depay/web3-client-evm'
+
+/*#elif _SOLANA
+
+import { request } from '@depay/web3-client-solana'
+
+//#else */
+
+import { request } from '@depay/web3-client'
+
+//#endif
+
 import React, { useState, useEffect } from 'react'
 import { Blockchain } from '@depay/web3-blockchains'
 import { CONSTANTS } from '@depay/web3-constants'
-import { request } from '@depay/web3-client'
 import { supported } from './blockchains'
+
 
 const tokenURIAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
 const uriAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"uri","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
@@ -26,7 +40,7 @@ let TokenImage = function(props){
   }, [blockchain, address])
   
   const logoFromRepository = ({ blockchain, address })=> {
-    if(['ethereum', 'bsc', 'polygon', 'solana'].includes(blockchain)) {
+    if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
       return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
     } else if(blockchain == 'velas'){
       return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
@@ -46,6 +60,9 @@ let TokenImage = function(props){
         break;
       case 'solana':
         return 'solana'
+        break;
+      case 'fantom':
+        return 'fantom'
         break;
       default:
         throw('DePayReactTokenImage: Unknown blockchain')

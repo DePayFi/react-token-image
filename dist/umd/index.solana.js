@@ -1,16 +1,16 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/web3-client-evm'), require('react'), require('@depay/web3-blockchains'), require('@depay/web3-constants')) :
-  typeof define === 'function' && define.amd ? define(['exports', '@depay/web3-client-evm', 'react', '@depay/web3-blockchains', '@depay/web3-constants'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/web3-client-solana'), require('react'), require('@depay/web3-blockchains'), require('@depay/web3-constants')) :
+  typeof define === 'function' && define.amd ? define(['exports', '@depay/web3-client-solana', 'react', '@depay/web3-blockchains', '@depay/web3-constants'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.Web3Client, global.React, global.Web3Blockchains, global.Web3Constants));
-}(this, (function (exports, web3ClientEvm, React, web3Blockchains, web3Constants) { 'use strict';
+}(this, (function (exports, web3ClientSolana, React, web3Blockchains, web3Constants) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
-  let supported = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
-  supported.evm = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
-  supported.solana = [];
+  let supported = ['solana'];
+  supported.evm = [];
+  supported.solana = ['solana'];
 
   const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js";
 
@@ -96,12 +96,12 @@
         setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
       } else if (source == 'depay' && supported.evm.includes(blockchain)) {
         if(id) {
-          web3ClientEvm.request({ blockchain, address, api: uriAPI, method: 'uri', params: [id] }).then((uri)=>{
+          web3ClientSolana.request({ blockchain, address, api: uriAPI, method: 'uri', params: [id] }).then((uri)=>{
             uri = uri.match('0x{id}') ? uri.replace('0x{id}', id) : uri;
             uriToImage(uri);
           }).catch(setUnknown);
         } else {
-          web3ClientEvm.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(uriToImage).catch(setUnknown);
+          web3ClientSolana.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(uriToImage).catch(setUnknown);
         }
       } else {
         setUnknown();

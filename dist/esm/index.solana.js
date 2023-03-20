@@ -1,11 +1,11 @@
-import { request } from '@depay/web3-client-evm';
+import { request } from '@depay/web3-client-solana';
 import React, { useState, useEffect } from 'react';
 import { Blockchain } from '@depay/web3-blockchains';
 import { CONSTANTS } from '@depay/web3-constants';
 
-let supported = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
-supported.evm = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
-supported.solana = [];
+let supported = ['solana'];
+supported.evm = [];
+supported.solana = ['solana'];
 
 const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js";
 
