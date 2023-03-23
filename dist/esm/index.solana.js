@@ -1,7 +1,6 @@
 import { request } from '@depay/web3-client-solana';
 import React, { useState, useEffect } from 'react';
-import { Blockchain } from '@depay/web3-blockchains';
-import { CONSTANTS } from '@depay/web3-constants';
+import Blockchains from '@depay/web3-blockchains';
 
 let supported = ['solana'];
 supported.evm = [];
@@ -20,11 +19,12 @@ let TokenImage = function(props){
   const [source, setSource] = useState('repository');
 
   const blockchain = props.blockchain.toLowerCase();
+  const NATIVE = Blockchains.findByName(blockchain).currency.address;
   const address = props.address;
   const id = props.id;
 
   useEffect(()=>{
-    if(CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
+    if(NATIVE.toLowerCase() == address.toLowerCase()) {
       setSrc(Blockchain.findByName(blockchain).logo);
     } else {
       setSrc(logoFromRepository({ blockchain, address }));

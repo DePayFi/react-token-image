@@ -1,12 +1,13 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/web3-client-solana'), require('react'), require('@depay/web3-blockchains'), require('@depay/web3-constants')) :
-  typeof define === 'function' && define.amd ? define(['exports', '@depay/web3-client-solana', 'react', '@depay/web3-blockchains', '@depay/web3-constants'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.Web3Client, global.React, global.Web3Blockchains, global.Web3Constants));
-}(this, (function (exports, web3ClientSolana, React, web3Blockchains, web3Constants) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/web3-client-solana'), require('react'), require('@depay/web3-blockchains')) :
+  typeof define === 'function' && define.amd ? define(['exports', '@depay/web3-client-solana', 'react', '@depay/web3-blockchains'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.Web3Client, global.React, global.Web3Blockchains));
+}(this, (function (exports, web3ClientSolana, React, Blockchains) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+  var Blockchains__default = /*#__PURE__*/_interopDefaultLegacy(Blockchains);
 
   let supported = ['solana'];
   supported.evm = [];
@@ -25,12 +26,13 @@
     const [source, setSource] = React.useState('repository');
 
     const blockchain = props.blockchain.toLowerCase();
+    const NATIVE = Blockchains__default['default'].findByName(blockchain).currency.address;
     const address = props.address;
     const id = props.id;
 
     React.useEffect(()=>{
-      if(web3Constants.CONSTANTS[blockchain].NATIVE.toLowerCase() == address.toLowerCase()) {
-        setSrc(web3Blockchains.Blockchain.findByName(blockchain).logo);
+      if(NATIVE.toLowerCase() == address.toLowerCase()) {
+        setSrc(Blockchain.findByName(blockchain).logo);
       } else {
         setSrc(logoFromRepository({ blockchain, address }));
       }

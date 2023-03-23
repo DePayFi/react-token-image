@@ -36,9 +36,8 @@
   "private": false,
   "peerDependencies": {
     "@depay/solana-web3.js": "^1.20.15",
-    "@depay/web3-blockchains": "^6.5.1",
-    "@depay/web3-client": "^10.6.2",
-    "@depay/web3-constants": "^6.4.2",
+    "@depay/web3-blockchains": "^7.0.0",
+    "@depay/web3-client": "^10.7.0",
     "ethers": "^5.7.1",
     "react": "^18",
     "react-dom": "^18"
@@ -51,9 +50,8 @@
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
     "@depay/solana-web3.js": "^1.20.15",
-    "@depay/web3-blockchains": "^6.5.1",
-    "@depay/web3-client": "^10.6.2",
-    "@depay/web3-constants": "^6.4.2",
+    "@depay/web3-blockchains": "^7.0.0",
+    "@depay/web3-client": "^10.7.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-replace": "^2.4.2",
