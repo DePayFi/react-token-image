@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-token-image-evm",
   "moduleName": "ReactTokenImage",
-  "version": "4.8.0",
+  "version": "4.8.1",
   "description": "React component to display token images with fallbacks and unknown state.",
   "main": "./dist/umd/index.evm.js",
   "module": "./dist/esm/index.evm.js",

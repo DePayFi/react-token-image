@@ -25,7 +25,7 @@ let TokenImage = function(props){
 
   useEffect(()=>{
     if(NATIVE.toLowerCase() == address.toLowerCase()) {
-      setSrc(Blockchain.findByName(blockchain).logo);
+      setSrc(Blockchains.findByName(blockchain).logo);
     } else {
       setSrc(logoFromRepository({ blockchain, address }));
     }

@@ -32,7 +32,7 @@
 
     React.useEffect(()=>{
       if(NATIVE.toLowerCase() == address.toLowerCase()) {
-        setSrc(Blockchain.findByName(blockchain).logo);
+        setSrc(Blockchains__default['default'].findByName(blockchain).logo);
       } else {
         setSrc(logoFromRepository({ blockchain, address }));
       }
