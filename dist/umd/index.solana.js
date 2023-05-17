@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/web3-client-solana'), require('react'), require('@depay/web3-blockchains')) :
-  typeof define === 'function' && define.amd ? define(['exports', '@depay/web3-client-solana', 'react', '@depay/web3-blockchains'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.Web3Client, global.React, global.Web3Blockchains));
-}(this, (function (exports, web3ClientSolana, React, Blockchains) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/solana-web3.js'), require('@depay/web3-client-solana'), require('@depay/web3-tokens-solana'), require('react'), require('@depay/web3-blockchains')) :
+  typeof define === 'function' && define.amd ? define(['exports', '@depay/solana-web3.js', '@depay/web3-client-solana', '@depay/web3-tokens-solana', 'react', '@depay/web3-blockchains'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.SolanaWeb3js, global.Web3Client, global.Web3Tokens, global.React, global.Web3Blockchains));
+}(this, (function (exports, solanaWeb3_js, web3ClientSolana, web3TokensSolana, React, Blockchains) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -13,8 +13,7 @@
   supported.evm = [];
   supported.solana = ['solana'];
 
-  const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js";
-
+  const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js"; function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
 
   const tokenURIAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
   const uriAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"uri","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
@@ -22,21 +21,84 @@
 
   let TokenImage = function(props){
 
-    const [src, setSrc] = React.useState();
-    const [source, setSource] = React.useState('repository');
+    const [src, _setSrc] = React.useState();
+    const [source, setSource] = React.useState();
 
     const blockchain = props.blockchain.toLowerCase();
     const NATIVE = Blockchains__default['default'].findByName(blockchain).currency.address;
     const address = props.address;
     const id = props.id;
+    const date = new Date();
+    const localStorageKey = ['react-token-image', blockchain, address, [date.getFullYear(), date.getMonth(), date.getDate()].join('-')].join('-');
+
+    const setSrc = (_src)=>{
+      localStorage.setItem(localStorageKey, _src);
+      _setSrc(_src);
+    };
 
     React.useEffect(()=>{
+      const storedImage = localStorage.getItem(localStorageKey);
+      if(storedImage && storedImage.length) { return setSrc(storedImage) }
       if(NATIVE.toLowerCase() == address.toLowerCase()) {
         setSrc(Blockchains__default['default'].findByName(blockchain).logo);
       } else {
-        setSrc(logoFromRepository({ blockchain, address }));
+        if(supported.evm.includes(blockchain)) {
+          setSource('repository');
+          setSrc(logoFromRepository({ blockchain, address }));
+        } else if(blockchain === 'solana') {
+          setSource('metaplex');
+          logoFromMetaplex({ blockchain, address }).then((image)=>{
+            setSrc(image);
+          });
+        }
       }
     }, [blockchain, address]);
+
+    const logoFromMetaplex = ({ blockchain, address }) => {
+      return new Promise(async(resolve, reject)=>{
+        try {
+
+          let mintPublicKey = new solanaWeb3_js.PublicKey(address);
+          let metaDataPublicKey = new solanaWeb3_js.PublicKey(web3TokensSolana.Token.solana.METADATA_ACCOUNT);
+
+          let seed = [
+            solanaWeb3_js.Buffer.from('metadata'),
+            metaDataPublicKey.toBuffer(),
+            mintPublicKey.toBuffer()  
+          ];
+
+          let tokenMetaDataPublicKey = (await solanaWeb3_js.PublicKey.findProgramAddress(seed, metaDataPublicKey))[0];
+
+          let metaData = await web3ClientSolana.request({
+            blockchain, 
+            address: tokenMetaDataPublicKey.toString(),
+            api: web3TokensSolana.Token.solana.METADATA_LAYOUT,
+            cache: 86400000, // 1 day
+          });
+          
+          if(_optionalChain([metaData, 'optionalAccess', _ => _.data, 'optionalAccess', _2 => _2.uri])) {
+
+            const uri = metaData.data.uri.replace(new RegExp('\u0000', 'g'), '');
+            if(uri && uri.length) {
+              await fetch(uri)
+                .then((response) => response.json())
+                .then((json)=>{
+                  if(json && json.image) {
+                    resolve(json.image);
+                  } else {
+                    resolve('');
+                  }
+                }).catch(()=>resolve(''));
+            } else {
+              resolve('');
+            }
+          } else {
+            resolve('');
+          }
+
+        } catch (e) { resolve(''); }
+      })
+    };
     
     const logoFromRepository = ({ blockchain, address })=> {
       if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
@@ -93,7 +155,10 @@
     };
 
     const handleLoadError = (error)=> {
-      if(source == 'repository') {
+      if(source == 'metaplex') {
+        setSource('repository');
+        setSrc(logoFromRepository({ blockchain, address }));
+      } else if(source == 'repository') {
         setSource('depay');
         setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
       } else if (source == 'depay' && supported.evm.includes(blockchain)) {
@@ -116,7 +181,7 @@
       React__default['default'].createElement('img', {
         className:  props.className ,
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 112}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 179}}
       )
     )
   };

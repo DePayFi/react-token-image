@@ -1,4 +1,5 @@
 import { request } from '@depay/web3-client-evm';
+import { Token } from '@depay/web3-tokens-evm';
 import React, { useState, useEffect } from 'react';
 import Blockchains from '@depay/web3-blockchains';
 
@@ -6,8 +7,7 @@ let supported = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
 supported.evm = ['ethereum', 'bsc', 'polygon', 'fantom', 'velas'];
 supported.solana = [];
 
-const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js";
-
+const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js"; function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
 
 const tokenURIAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
 const uriAPI = [{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"uri","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
@@ -15,21 +15,84 @@ const UNKNOWN_IMAGE = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmN
 
 let TokenImage = function(props){
 
-  const [src, setSrc] = useState();
-  const [source, setSource] = useState('repository');
+  const [src, _setSrc] = useState();
+  const [source, setSource] = useState();
 
   const blockchain = props.blockchain.toLowerCase();
   const NATIVE = Blockchains.findByName(blockchain).currency.address;
   const address = props.address;
   const id = props.id;
+  const date = new Date();
+  const localStorageKey = ['react-token-image', blockchain, address, [date.getFullYear(), date.getMonth(), date.getDate()].join('-')].join('-');
+
+  const setSrc = (_src)=>{
+    localStorage.setItem(localStorageKey, _src);
+    _setSrc(_src);
+  };
 
   useEffect(()=>{
+    const storedImage = localStorage.getItem(localStorageKey);
+    if(storedImage && storedImage.length) { return setSrc(storedImage) }
     if(NATIVE.toLowerCase() == address.toLowerCase()) {
       setSrc(Blockchains.findByName(blockchain).logo);
     } else {
-      setSrc(logoFromRepository({ blockchain, address }));
+      if(supported.evm.includes(blockchain)) {
+        setSource('repository');
+        setSrc(logoFromRepository({ blockchain, address }));
+      } else if(blockchain === 'solana') {
+        setSource('metaplex');
+        logoFromMetaplex({ blockchain, address }).then((image)=>{
+          setSrc(image);
+        });
+      }
     }
   }, [blockchain, address]);
+
+  const logoFromMetaplex = ({ blockchain, address }) => {
+    return new Promise(async(resolve, reject)=>{
+      try {
+
+        let mintPublicKey = new PublicKey(address);
+        let metaDataPublicKey = new PublicKey(Token.solana.METADATA_ACCOUNT);
+
+        let seed = [
+          Buffer.from('metadata'),
+          metaDataPublicKey.toBuffer(),
+          mintPublicKey.toBuffer()  
+        ];
+
+        let tokenMetaDataPublicKey = (await PublicKey.findProgramAddress(seed, metaDataPublicKey))[0];
+
+        let metaData = await request({
+          blockchain, 
+          address: tokenMetaDataPublicKey.toString(),
+          api: Token.solana.METADATA_LAYOUT,
+          cache: 86400000, // 1 day
+        });
+        
+        if(_optionalChain([metaData, 'optionalAccess', _ => _.data, 'optionalAccess', _2 => _2.uri])) {
+
+          const uri = metaData.data.uri.replace(new RegExp('\u0000', 'g'), '');
+          if(uri && uri.length) {
+            await fetch(uri)
+              .then((response) => response.json())
+              .then((json)=>{
+                if(json && json.image) {
+                  resolve(json.image);
+                } else {
+                  resolve('');
+                }
+              }).catch(()=>resolve(''));
+          } else {
+            resolve('');
+          }
+        } else {
+          resolve('');
+        }
+
+      } catch (e) { resolve(''); }
+    })
+  };
   
   const logoFromRepository = ({ blockchain, address })=> {
     if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
@@ -86,7 +149,10 @@ let TokenImage = function(props){
   };
 
   const handleLoadError = (error)=> {
-    if(source == 'repository') {
+    if(source == 'metaplex') {
+      setSource('repository');
+      setSrc(logoFromRepository({ blockchain, address }));
+    } else if(source == 'repository') {
       setSource('depay');
       setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`);
     } else if (source == 'depay' && supported.evm.includes(blockchain)) {
@@ -109,7 +175,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 112}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 178}}
     )
   )
 };
