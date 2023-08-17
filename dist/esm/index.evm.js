@@ -1,5 +1,5 @@
 import { request } from '@depay/web3-client-evm';
-import { Token } from '@depay/web3-tokens-evm';
+import Token from '@depay/web3-tokens-evm';
 import React, { useState, useEffect } from 'react';
 import Blockchains from '@depay/web3-blockchains';
 
