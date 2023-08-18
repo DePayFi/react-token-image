@@ -11,10 +11,10 @@ describe('ReactTokenImage', () => {
         ReactDOM.createRoot(
           document.getElementById('app')
         ).render(
-          React.createElement(TokenImage, { blockchain: 'ethereum', address: '0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb' }),
+          React.createElement(TokenImage, { blockchain: 'ethereum', address: '0x00059AE69c1622A7542EdC15E8d17b060fE307b6' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xa0bEd124a09ac2Bd941b10349d8d224fe3c955eb/logo.png')
+        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x00059AE69c1622A7542EdC15E8d17b060fE307b6/logo.png')
       })
     })
   })
@@ -44,7 +44,7 @@ describe('ReactTokenImage', () => {
           React.createElement(TokenImage, { blockchain: 'bsc', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82/logo.png')
+        cy.get('img').should('have.attr', 'src', 'https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82/logo.png')
       })
     })
   })
@@ -56,10 +56,10 @@ describe('ReactTokenImage', () => {
         ReactDOM.createRoot(
           document.getElementById('app')
         ).render(
-          React.createElement(TokenImage, { blockchain: 'polygon', address: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174' }),
+          React.createElement(TokenImage, { blockchain: 'polygon', address: '0x831753DD7087CaC61aB5644b308642cc1c33Dc13' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/polygon/assets/0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174/logo.png')
+        cy.get('img').should('have.attr', 'src', 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/polygon/assets/0x831753DD7087CaC61aB5644b308642cc1c33Dc13/logo.png')
       })
     })
   })
@@ -71,10 +71,10 @@ describe('ReactTokenImage', () => {
         ReactDOM.createRoot(
           document.getElementById('app')
         ).render(
-          React.createElement(TokenImage, { blockchain: 'ethereum', address: '0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb' }),
+          React.createElement(TokenImage, { blockchain: 'ethereum', address: '0x5a666c7d92e5fa7edcb6390e4efd6d0cdd69cf37' }),
         )
 
-        cy.get('img').should('have.attr', 'src', 'https://integrate.depay.com/tokens/ethereum/0xa0bed124a09ac2Bd941b10349d8d224fe3c955eb/image')
+        cy.get('img').should('have.attr', 'src', 'https://integrate.depay.com/tokens/ethereum/0x5a666c7d92e5fa7edcb6390e4efd6d0cdd69cf37/image')
       })
     })
   })
