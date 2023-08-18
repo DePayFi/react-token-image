@@ -19,7 +19,6 @@ let TokenImage = function(props){
   const [source, setSource] = useState();
 
   const blockchain = props.blockchain.toLowerCase();
-  const NATIVE = Blockchains.findByName(blockchain).currency.address;
   const address = props.address;
   const id = props.id;
   const date = new Date();
@@ -33,8 +32,9 @@ let TokenImage = function(props){
   useEffect(()=>{
     const storedImage = localStorage.getItem(localStorageKey);
     if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) { return setSrc(storedImage) }
-    if(NATIVE.toLowerCase() == address.toLowerCase()) {
-      setSrc(Blockchains.findByName(blockchain).logo);
+    const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address.toLowerCase());
+    if(foundMajorToken) {
+      setSrc(foundMajorToken.logo);
     } else {
       if(supported.evm.includes(blockchain)) {
         setSource('repository');
@@ -96,13 +96,13 @@ let TokenImage = function(props){
   
   const logoFromRepository = ({ blockchain, address })=> {
     if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
-      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainNameToTrustWalletAssets(blockchain)}/assets/${address}/logo.png`
     } else if(blockchain == 'velas'){
       return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
     }
   };
 
-  const mapBlockchainName = (blockchain)=>{
+  const mapBlockchainNameToTrustWalletAssets = (blockchain)=>{
     switch (blockchain) {
       case 'ethereum':
         return 'ethereum'
@@ -114,6 +114,14 @@ let TokenImage = function(props){
         return 'solana'
       case 'fantom':
         return 'fantom'
+      case 'arbitrum':
+        return 'arbitrum'
+      case 'avalanche':
+        return 'avalanchec'
+      case 'gnosis':
+        return 'xdai'
+      case 'optimism':
+        return 'optimism'
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
     }
@@ -175,7 +183,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 178}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 190}}
     )
   )
 };

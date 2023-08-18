@@ -31,7 +31,6 @@ let TokenImage = function(props){
   const [source, setSource] = useState()
 
   const blockchain = props.blockchain.toLowerCase()
-  const NATIVE = Blockchains.findByName(blockchain).currency.address
   const address = props.address
   const id = props.id
   const date = new Date()
@@ -45,8 +44,9 @@ let TokenImage = function(props){
   useEffect(()=>{
     const storedImage = localStorage.getItem(localStorageKey)
     if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) { return setSrc(storedImage) }
-    if(NATIVE.toLowerCase() == address.toLowerCase()) {
-      setSrc(Blockchains.findByName(blockchain).logo)
+    const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address.toLowerCase())
+    if(foundMajorToken) {
+      setSrc(foundMajorToken.logo)
     } else {
       if(supported.evm.includes(blockchain)) {
         setSource('repository')
@@ -108,13 +108,13 @@ let TokenImage = function(props){
   
   const logoFromRepository = ({ blockchain, address })=> {
     if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
-      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainName(blockchain)}/assets/${address}/logo.png`
+      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainNameToTrustWalletAssets(blockchain)}/assets/${address}/logo.png`
     } else if(blockchain == 'velas'){
       return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
     }
   }
 
-  const mapBlockchainName = (blockchain)=>{
+  const mapBlockchainNameToTrustWalletAssets = (blockchain)=>{
     switch (blockchain) {
       case 'ethereum':
         return 'ethereum'
@@ -130,6 +130,18 @@ let TokenImage = function(props){
         break;
       case 'fantom':
         return 'fantom'
+        break;
+      case 'arbitrum':
+        return 'arbitrum'
+        break;
+      case 'avalanche':
+        return 'avalanchec'
+        break;
+      case 'gnosis':
+        return 'xdai'
+        break;
+      case 'optimism':
+        return 'optimism'
         break;
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
