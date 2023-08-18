@@ -967,10 +967,10 @@
   dependencies:
     bs58 "^5.0.0"
 
-"@depay/web3-blockchains@^8.4.2":
-  version "8.4.2"
-  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-8.4.2.tgz#3f5f072f337acc334e5f0f097627dd85af85848c"
-  integrity sha512-kvzTy0R7zBqL6w2CSRGm3SO1K9QuYpuOCa0BTMt4O7ATqxFg+uXor3uWjS8oWvlQwOdqLl8WT7aaKT8OD63KXw==
+"@depay/web3-blockchains@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-9.0.0.tgz#eaac5491e8f2c0dea84474af7db1a6af4f8cfb35"
+  integrity sha512-E1LhENbPbJ5JtQ1Im2ojwVPsqCM9H/VT937ZEXC2gs12M9NnzRM6XqvFsyhLh2zH4VnCDDbkyNYFvfigdn0HaA==
 
 "@depay/web3-client@^10.16.3":
   version "10.16.3"
