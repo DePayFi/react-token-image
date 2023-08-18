@@ -27,34 +27,46 @@ const UNKNOWN_IMAGE = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmN
 
 let TokenImage = function(props){
 
-  const [src, _setSrc] = useState()
-  const [source, setSource] = useState()
+  const [src, setSrc] = useState()
+  const [source, _setSource] = useState()
 
   const blockchain = props.blockchain.toLowerCase()
   const address = props.address
   const id = props.id
   const date = new Date()
-  const localStorageKey = ['react-token-image', blockchain, address, [date.getFullYear(), date.getMonth(), date.getDate()].join('-')].join('-')
+  const getLocalStorageKey = (blockchain, address)=>{
+    return [
+      'react-token-image',
+      blockchain,
+      address,
+      [date.getFullYear(), date.getMonth(), date.getDate()].join('-')
+    ].join('-')
+  }
 
-  const setSrc = (_src)=>{
-    localStorage.setItem(localStorageKey, _src)
-    _setSrc(_src)
+  const setSource = (src, source)=>{
+    setSrc(src)
+    _setSource(source)
+    if(source != 'unknown') {
+      localStorage.setItem(getLocalStorageKey(blockchain, address), src)
+    }
   }
 
   useEffect(()=>{
-    const storedImage = localStorage.getItem(localStorageKey)
-    if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) { return setSrc(storedImage) }
+    const storedImage = localStorage.getItem(getLocalStorageKey(blockchain, address))
+    if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) {
+      return setSource(storedImage, 'stored')
+    }
     const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address.toLowerCase())
     if(foundMajorToken) {
-      setSrc(foundMajorToken.logo)
+      setSource(foundMajorToken.logo, 'web3-blockchains')
     } else {
       if(supported.evm.includes(blockchain)) {
-        setSource('repository')
-        setSrc(logoFromRepository({ blockchain, address }))
+        setSource(logoFromRepository({ blockchain, address }), 'repository')
       } else if(blockchain === 'solana') {
-        setSource('metaplex')
         logoFromMetaplex({ blockchain, address }).then((image)=>{
-          setSrc(image)
+          setSource(image, 'metaplex')
+        }).catch((error)=>{
+          setSource(logoFromRepository({ blockchain, address }), 'repository')
         })
       }
     }
@@ -81,6 +93,7 @@ let TokenImage = function(props){
           api: Token.solana.METADATA_LAYOUT,
           cache: 86400000, // 1 day
         })
+
         
         if(metaData?.data?.uri) {
 
@@ -92,26 +105,22 @@ let TokenImage = function(props){
                 if(json && json.image) {
                   resolve(json.image)
                 } else {
-                  resolve('')
+                  reject('image not found on metaplex')
                 }
-              }).catch(()=>resolve(''))
+              }).catch(()=>reject('image not found on metaplex'))
           } else {
-            resolve('')
+            reject('image not found on metaplex')
           }
         } else {
-          resolve('')
+          reject('image not found on metaplex')
         }
 
-      } catch { resolve('') }
+      } catch { reject('image not found on metaplex') }
     })
   }
   
   const logoFromRepository = ({ blockchain, address })=> {
-    if(['ethereum', 'bsc', 'polygon', 'fantom', 'solana'].includes(blockchain)) {
-      return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainNameToTrustWalletAssets(blockchain)}/assets/${address}/logo.png`
-    } else if(blockchain == 'velas'){
-      return `https://raw.githubusercontent.com/wagyuswapapp/assets/master/blockchains/velas/assets/${address.toLowerCase()}/logo.png`
-    }
+    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${mapBlockchainNameToTrustWalletAssets(blockchain)}/assets/${address}/logo.png`
   }
 
   const mapBlockchainNameToTrustWalletAssets = (blockchain)=>{
@@ -149,8 +158,7 @@ let TokenImage = function(props){
   }
 
   const setUnknown = ()=>{
-    setSource('unknown')
-    setSrc(UNKNOWN_IMAGE)
+    setSource(UNKNOWN_IMAGE, 'unknown')
   }
 
   const uriToImage = (tokenURI)=>{
@@ -168,8 +176,7 @@ let TokenImage = function(props){
           if(image.match(/^ipfs/)) {
             image = `https://ipfs.io/ipfs/${image.split('://')[1]}`
           } 
-          setSource('meta')
-          setSrc(image)
+          setSource(image, 'meta')
         } else {
           setUnknown()
         }
@@ -178,12 +185,13 @@ let TokenImage = function(props){
   }
 
   const handleLoadError = (error)=> {
+    delete localStorage[getLocalStorageKey(blockchain, address)]
     if(source == 'metaplex') {
-      setSource('repository')
-      setSrc(logoFromRepository({ blockchain, address }))
+      setSource(logoFromRepository({ blockchain, address }), 'repository')
+    } else if(source == 'web3-blockchains') {
+      setSource(logoFromRepository({ blockchain, address }), 'repository')
     } else if(source == 'repository') {
-      setSource('depay')
-      setSrc(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`)
+      setSource(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`, 'depay')
     } else if (source == 'depay' && supported.evm.includes(blockchain)) {
       if(id) {
         request({ blockchain, address, api: uriAPI, method: 'uri', params: [id] }).then((uri)=>{
@@ -198,7 +206,11 @@ let TokenImage = function(props){
     }
   }
 
-  if(src == undefined) { return null }
+  if(src == undefined) {
+    return(
+      <div className={ props.className } />
+    )
+  }
 
   return(
     <img
