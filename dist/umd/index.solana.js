@@ -138,6 +138,8 @@
           return 'xdai'
         case 'optimism':
           return 'optimism'
+        case 'base':
+          return 'base'
         default:
           throw('DePayReactTokenImage: Unknown blockchain')
       }
@@ -194,7 +196,7 @@
 
     if(src == undefined) {
       return(
-        React__default['default'].createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 198}} )
+        React__default['default'].createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 201}} )
       )
     }
 
@@ -202,7 +204,7 @@
       React__default['default'].createElement('img', {
         className:  props.className ,
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 203}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 206}}
       )
     )
   };
