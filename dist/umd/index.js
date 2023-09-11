@@ -2,10 +2,11 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/solana-web3.js'), require('@depay/web3-client'), require('@depay/web3-tokens'), require('react'), require('@depay/web3-blockchains')) :
   typeof define === 'function' && define.amd ? define(['exports', '@depay/solana-web3.js', '@depay/web3-client', '@depay/web3-tokens', 'react', '@depay/web3-blockchains'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.SolanaWeb3js, global.Web3Client, global.Web3Tokens, global.React, global.Web3Blockchains));
-}(this, (function (exports, solanaWeb3_js, web3Client, web3Tokens, React, Blockchains) { 'use strict';
+}(this, (function (exports, solanaWeb3_js, web3Client, Token, React, Blockchains) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
+  var Token__default = /*#__PURE__*/_interopDefaultLegacy(Token);
   var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
   var Blockchains__default = /*#__PURE__*/_interopDefaultLegacy(Blockchains);
 
@@ -71,7 +72,7 @@
         try {
 
           let mintPublicKey = new solanaWeb3_js.PublicKey(address);
-          let metaDataPublicKey = new solanaWeb3_js.PublicKey(web3Tokens.Token.solana.METADATA_ACCOUNT);
+          let metaDataPublicKey = new solanaWeb3_js.PublicKey(Token__default['default'].solana.METADATA_ACCOUNT);
 
           let seed = [
             solanaWeb3_js.Buffer.from('metadata'),
@@ -84,7 +85,7 @@
           let metaData = await web3Client.request({
             blockchain, 
             address: tokenMetaDataPublicKey.toString(),
-            api: web3Tokens.Token.solana.METADATA_LAYOUT,
+            api: Token__default['default'].solana.METADATA_LAYOUT,
             cache: 86400000, // 1 day
           });
 
