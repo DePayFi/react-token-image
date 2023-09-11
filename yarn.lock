@@ -977,10 +977,10 @@
   resolved "https://registry.yarnpkg.com/@depay/web3-client/-/web3-client-10.18.0.tgz#bf9d739c68dc7608848f61be9a1031051caf7511"
   integrity sha512-EZLmM52PJBW/Tal/yWVAQW6v9/6sTeDbvhDYKm4MoYZ80aBRXumI6clz8agSTTWAIg4jGiWkhLVEWTRKZgkozA==
 
-"@depay/web3-tokens@^10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@depay/web3-tokens/-/web3-tokens-10.3.0.tgz#11f19ed154c65329739afc29e74cd254030f811f"
-  integrity sha512-r/98yZx+j0NLm5Z6wiUwyJvsWE/sq4//B1j4S4q1zzm62S3kLs3+H/5XEVEcInzekvr2NruC0oFgV+1Lfvwmtw==
+"@depay/web3-tokens@^9.20.1":
+  version "9.20.1"
+  resolved "https://registry.yarnpkg.com/@depay/web3-tokens/-/web3-tokens-9.20.1.tgz#a067ad1d00e2e132f92ae4ee9b95bb62361387c2"
+  integrity sha512-f2PEC22E/b9dqhMGdIl3NEsgyCEsTEWF/PHznFOS5u8EpVaRqgLqHHm84zRptODEdsVJIlJ4QvGkf93FFUsexw==
 
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"

@@ -1,6 +1,6 @@
 import { PublicKey, Buffer } from '@depay/solana-web3.js';
 import { request } from '@depay/web3-client-solana';
-import Token from '@depay/web3-tokens-solana';
+import { Token } from '@depay/web3-tokens-solana';
 import React, { useState, useEffect } from 'react';
 import Blockchains from '@depay/web3-blockchains';
 

@@ -26,8 +26,8 @@
   "peerDependencies": {
     "@depay/solana-web3.js": "^1.25.1",
     "@depay/web3-blockchains": "^9.1.4",
-    "@depay/web3-client-solana": "^10.18.0",
-    "@depay/web3-tokens-solana": "^10.3.0",
+    "@depay/web3-client-solana": "^9.20.1",
+    "@depay/web3-tokens-solana": "^9.20.1",
     "ethers": "^5.7.1",
     "react": "^18",
     "react-dom": "^18"
