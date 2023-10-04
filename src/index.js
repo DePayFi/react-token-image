@@ -56,7 +56,7 @@ let TokenImage = function(props){
     if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) {
       return setSource(storedImage, 'stored')
     }
-    const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address.toLowerCase())
+    const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address?.toLowerCase())
     if(foundMajorToken) {
       setSource(foundMajorToken.logo, 'web3-blockchains')
     } else {
