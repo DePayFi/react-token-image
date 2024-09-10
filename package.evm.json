@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-token-image-evm",
   "moduleName": "ReactTokenImage",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "React component to display token images with fallbacks and unknown state.",
   "main": "./dist/umd/index.evm.js",
   "module": "./dist/esm/index.evm.js",
@@ -24,8 +24,8 @@
   "homepage": "https://depay.com",
   "private": false,
   "peerDependencies": {
-    "@depay/web3-blockchains": "^9.2.1",
-    "@depay/web3-client-evm": "^10.18.2",
+    "@depay/web3-blockchains": "^9.5.2",
+    "@depay/web3-client-evm": "^10.18.13",
     "@depay/web3-tokens-evm": "^10.3.0",
     "ethers": "^5.7.1",
     "react": "^18",

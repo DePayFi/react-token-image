@@ -37,9 +37,9 @@ let TokenImage = function(props){
   const getLocalStorageKey = (blockchain, address)=>{
     return [
       'react-token-image',
+      'v5.0.2',
       blockchain,
       address,
-      [date.getFullYear(), date.getMonth(), date.getDate()].join('-')
     ].join('-')
   }
 
@@ -47,14 +47,19 @@ let TokenImage = function(props){
     setSrc(src)
     _setSource(source)
     if(source != 'unknown') {
-      localStorage.setItem(getLocalStorageKey(blockchain, address), src)
+      localStorage.setItem(getLocalStorageKey(blockchain, address), JSON.stringify({ src, expiresAt: Date.now() + (24 * 60 * 60 * 1000) })) // 24 hours
     }
   }
 
   useEffect(()=>{
-    const storedImage = localStorage.getItem(getLocalStorageKey(blockchain, address))
-    if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) {
-      return setSource(storedImage, 'stored')
+    let storedImage = localStorage.getItem(getLocalStorageKey(blockchain, address))
+    if(storedImage && storedImage.length) {
+      try { 
+        storedImage = JSON.parse(storedImage)
+      } catch {}
+    } 
+    if(storedImage && storedImage.length && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
+      return setSource(storedImage.src, 'stored')
     }
     const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address?.toLowerCase())
     if(foundMajorToken) {

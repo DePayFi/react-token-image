@@ -22,13 +22,12 @@ let TokenImage = function(props){
   const blockchain = props.blockchain.toLowerCase();
   const address = props.address;
   const id = props.id;
-  const date = new Date();
   const getLocalStorageKey = (blockchain, address)=>{
     return [
       'react-token-image',
+      'v5.0.2',
       blockchain,
       address,
-      [date.getFullYear(), date.getMonth(), date.getDate()].join('-')
     ].join('-')
   };
 
@@ -36,14 +35,19 @@ let TokenImage = function(props){
     setSrc(src);
     _setSource(source);
     if(source != 'unknown') {
-      localStorage.setItem(getLocalStorageKey(blockchain, address), src);
+      localStorage.setItem(getLocalStorageKey(blockchain, address), JSON.stringify({ src, expiresAt: Date.now() + (24 * 60 * 60 * 1000) })); // 24 hours
     }
   };
 
   useEffect(()=>{
-    const storedImage = localStorage.getItem(getLocalStorageKey(blockchain, address));
-    if(storedImage && storedImage.length && storedImage != UNKNOWN_IMAGE) {
-      return setSource(storedImage, 'stored')
+    let storedImage = localStorage.getItem(getLocalStorageKey(blockchain, address));
+    if(storedImage && storedImage.length) {
+      try { 
+        storedImage = JSON.parse(storedImage);
+      } catch (e) {}
+    } 
+    if(storedImage && storedImage.length && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
+      return setSource(storedImage.src, 'stored')
     }
     const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === _optionalChain([address, 'optionalAccess', _ => _.toLowerCase, 'call', _2 => _2()]));
     if(foundMajorToken) {
@@ -104,7 +108,7 @@ let TokenImage = function(props){
           reject('image not found on metaplex');
         }
 
-      } catch (e) { reject('image not found on metaplex'); }
+      } catch (e2) { reject('image not found on metaplex'); }
     })
   };
   
@@ -190,7 +194,7 @@ let TokenImage = function(props){
 
   if(src == undefined) {
     return(
-      React.createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 201}} )
+      React.createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 206}} )
     )
   }
 
@@ -198,7 +202,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 206}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 211}}
     )
   )
 };
