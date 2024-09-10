@@ -57,8 +57,8 @@ let TokenImage = function(props){
       try { 
         storedImage = JSON.parse(storedImage)
       } catch {}
-    } 
-    if(storedImage && storedImage.length && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
+    }
+    if(storedImage && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
       return setSource(storedImage.src, 'stored')
     }
     const foundMajorToken = Blockchains[blockchain].tokens.find((token)=> token.address.toLowerCase() === address?.toLowerCase())

@@ -51,8 +51,8 @@
         try { 
           storedImage = JSON.parse(storedImage);
         } catch (e) {}
-      } 
-      if(storedImage && storedImage.length && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
+      }
+      if(storedImage && storedImage.src && storedImage.expiresAt > Date.now() && storedImage.src != UNKNOWN_IMAGE) {
         return setSource(storedImage.src, 'stored')
       }
       const foundMajorToken = Blockchains__default['default'][blockchain].tokens.find((token)=> token.address.toLowerCase() === _optionalChain([address, 'optionalAccess', _ => _.toLowerCase, 'call', _2 => _2()]));
