@@ -138,6 +138,8 @@ let TokenImage = function(props){
         return 'optimism'
       case 'base':
         return 'base'
+      case 'worldchain':
+        return 'optimism'
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
     }
@@ -194,7 +196,7 @@ let TokenImage = function(props){
 
   if(src == undefined) {
     return(
-      React.createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 206}} )
+      React.createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 209}} )
     )
   }
 
@@ -202,7 +204,7 @@ let TokenImage = function(props){
     React.createElement('img', {
       className:  props.className ,
       src:  src ,
-      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 211}}
+      onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 214}}
     )
   )
 };

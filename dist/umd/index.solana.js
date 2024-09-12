@@ -144,6 +144,8 @@
           return 'optimism'
         case 'base':
           return 'base'
+        case 'worldchain':
+          return 'optimism'
         default:
           throw('DePayReactTokenImage: Unknown blockchain')
       }
@@ -200,7 +202,7 @@
 
     if(src == undefined) {
       return(
-        React__default['default'].createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 206}} )
+        React__default['default'].createElement('div', { className:  props.className , __self: this, __source: {fileName: _jsxFileName, lineNumber: 209}} )
       )
     }
 
@@ -208,7 +210,7 @@
       React__default['default'].createElement('img', {
         className:  props.className ,
         src:  src ,
-        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 211}}
+        onError:  handleLoadError , __self: this, __source: {fileName: _jsxFileName, lineNumber: 214}}
       )
     )
   };

@@ -160,6 +160,9 @@ let TokenImage = function(props){
       case 'base':
         return 'base'
         break;
+      case 'worldchain':
+        return 'optimism'
+        break;
       default:
         throw('DePayReactTokenImage: Unknown blockchain')
     }
