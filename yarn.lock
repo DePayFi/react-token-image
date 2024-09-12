@@ -960,27 +960,27 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@depay/solana-web3.js@^1.25.1":
-  version "1.25.1"
-  resolved "https://registry.yarnpkg.com/@depay/solana-web3.js/-/solana-web3.js-1.25.1.tgz#2f4725007ff4cfc14af2606eb3d333e68097e13f"
-  integrity sha512-tKCHHQVoZV85wZ8r3ZuxuQlejBcVolIUf52Bq2Pne3KR1BpxYJF2/9XRTH9qCrLZMQsgsQHikQEH5eglDCKJkA==
+"@depay/solana-web3.js@^1.26.0":
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/@depay/solana-web3.js/-/solana-web3.js-1.26.0.tgz#6234cd46779924a930d6b6021b66a25c18b38365"
+  integrity sha512-aAhDxfNGraE8VBwM5g/BhHnNCENlLSKDJ3yIh2EZd4mfmKM/4utv0cNUhTEytUAvvFoaMcOXXQ5U5sE1IMXFrQ==
   dependencies:
     bs58 "^5.0.0"
 
-"@depay/web3-blockchains@^9.5.2":
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-9.5.2.tgz#f19d0ededa3b059f21af455e2d5b280f23f07575"
-  integrity sha512-GocEM5I9aBFGrQ0mRAFlZd65SNMKYLAGzYJAE+UnYxTt1gA3p7eYI90VMxAp1KF+T38VAGEZLElilIql9Gb0QQ==
+"@depay/web3-blockchains@^9.6.0":
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/@depay/web3-blockchains/-/web3-blockchains-9.6.0.tgz#51bcd4cd6bcc9542b61f7792eabdccbe6385b476"
+  integrity sha512-+REyl5vva1e6t4yvSJKJE2IgidTNDPB7imn4xxAqqeVOFJryLBwaPddyh5C9pnX9GMpLhR6s6Su4AgrdLSZ/JQ==
 
-"@depay/web3-client@^10.18.13":
-  version "10.18.13"
-  resolved "https://registry.yarnpkg.com/@depay/web3-client/-/web3-client-10.18.13.tgz#59929ee3e273a764885e6fea2f5f6942239ab41e"
-  integrity sha512-jPj+82NRao9ByHnu3fpxBQEb3bCGGicDX3qR2XNvmDVnbODS88So9iBy+9K8JF9ucTWlTktubg+4io44V+qvwA==
+"@depay/web3-client@^10.19.0":
+  version "10.19.0"
+  resolved "https://registry.yarnpkg.com/@depay/web3-client/-/web3-client-10.19.0.tgz#11fbef413d99b9d21890475a89fc19f6e5ddb06d"
+  integrity sha512-5K/C225cO6uPW+rBj6DRjZrIZEUNi5HcsUeMiZipy7vfYZNTnAMqFU3AbTgYTatIvCXSJ6T+fTp1cEmnoXalhA==
 
-"@depay/web3-tokens@^10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@depay/web3-tokens/-/web3-tokens-10.3.0.tgz#11f19ed154c65329739afc29e74cd254030f811f"
-  integrity sha512-r/98yZx+j0NLm5Z6wiUwyJvsWE/sq4//B1j4S4q1zzm62S3kLs3+H/5XEVEcInzekvr2NruC0oFgV+1Lfvwmtw==
+"@depay/web3-tokens@^10.4.0":
+  version "10.4.0"
+  resolved "https://registry.yarnpkg.com/@depay/web3-tokens/-/web3-tokens-10.4.0.tgz#6e4a937eaef90d09be87243ad4e1302b858026b0"
+  integrity sha512-yQm+s1tVPssjP2qUOhy65bzVqvD0GYLacdOxG1Zmx8HltcORyehqNJdekraCgw99bbeTkMsxeC3KNuwdb0d/xw==
 
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
