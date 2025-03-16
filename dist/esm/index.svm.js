@@ -1,12 +1,12 @@
 import { PublicKey, Buffer } from '@depay/solana-web3.js';
-import { request } from '@depay/web3-client-solana';
-import Token from '@depay/web3-tokens-solana';
+import { request } from '@depay/web3-client-svm';
+import Token from '@depay/web3-tokens-svm';
 import React, { useState, useEffect } from 'react';
 import Blockchains from '@depay/web3-blockchains';
 
 let supported = ['solana'];
 supported.evm = [];
-supported.solana = ['solana'];
+supported.svm = ['solana'];
 
 const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js"; function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
 

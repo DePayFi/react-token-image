@@ -44,16 +44,16 @@ This library supports the following blockchains:
 
 In case you want to use and package only specific platforms, use the platform-specific package:
 
-### EVM platform specific packaging
+### EVM (Ethereum Virtual Machien) platform specific packaging
 
 ```javascript
 import { TokenImage } from '@depay/react-token-image-evm'
 ```
 
-### Solana platform specific packaging
+### SVM (Solana Virtual Machine) platform specific packaging
 
 ```javascript
-import { TokenImage } from '@depay/react-token-image-solana'
+import { TokenImage } from '@depay/react-token-image-svm'
 ```
 
 

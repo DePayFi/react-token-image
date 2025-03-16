@@ -3,11 +3,11 @@
 import { request } from '@depay/web3-client-evm'
 import Token from '@depay/web3-tokens-evm'
 
-/*#elif _SOLANA
+/*#elif _SVM
 
 import { Buffer, PublicKey } from '@depay/solana-web3.js'
-import { request } from '@depay/web3-client-solana'
-import Token from '@depay/web3-tokens-solana'
+import { request } from '@depay/web3-client-svm'
+import Token from '@depay/web3-tokens-svm'
 
 //#else */
 

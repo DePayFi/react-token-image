@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/solana-web3.js'), require('@depay/web3-client-solana'), require('@depay/web3-tokens-solana'), require('react'), require('@depay/web3-blockchains')) :
-  typeof define === 'function' && define.amd ? define(['exports', '@depay/solana-web3.js', '@depay/web3-client-solana', '@depay/web3-tokens-solana', 'react', '@depay/web3-blockchains'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@depay/solana-web3.js'), require('@depay/web3-client-svm'), require('@depay/web3-tokens-svm'), require('react'), require('@depay/web3-blockchains')) :
+  typeof define === 'function' && define.amd ? define(['exports', '@depay/solana-web3.js', '@depay/web3-client-svm', '@depay/web3-tokens-svm', 'react', '@depay/web3-blockchains'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactTokenImage = {}, global.SolanaWeb3js, global.Web3Client, global.Web3Tokens, global.React, global.Web3Blockchains));
-}(this, (function (exports, solanaWeb3_js, web3ClientSolana, Token, React, Blockchains) { 'use strict';
+}(this, (function (exports, solanaWeb3_js, web3ClientSvm, Token, React, Blockchains) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -12,7 +12,7 @@
 
   let supported = ['solana'];
   supported.evm = [];
-  supported.solana = ['solana'];
+  supported.svm = ['solana'];
 
   const _jsxFileName = "/Users/sebastian/Work/DePay/react-token-image/src/index.js"; function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
 
@@ -86,7 +86,7 @@
 
           let tokenMetaDataPublicKey = (await solanaWeb3_js.PublicKey.findProgramAddress(seed, metaDataPublicKey))[0];
 
-          let metaData = await web3ClientSolana.request({
+          let metaData = await web3ClientSvm.request({
             blockchain, 
             address: tokenMetaDataPublicKey.toString(),
             api: Token__default['default'].solana.METADATA_LAYOUT,
@@ -188,12 +188,12 @@
         setSource(`https://integrate.depay.com/tokens/${blockchain}/${address}/image`, 'depay');
       } else if (source == 'depay' && supported.evm.includes(blockchain)) {
         if(id) {
-          web3ClientSolana.request({ blockchain, address, api: uriAPI, method: 'uri', params: [id] }).then((uri)=>{
+          web3ClientSvm.request({ blockchain, address, api: uriAPI, method: 'uri', params: [id] }).then((uri)=>{
             uri = uri.match('0x{id}') ? uri.replace('0x{id}', id) : uri;
             uriToImage(uri);
           }).catch(setUnknown);
         } else {
-          web3ClientSolana.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(uriToImage).catch(setUnknown);
+          web3ClientSvm.request({ blockchain, address, api: tokenURIAPI, method: 'tokenURI', params: [1] }).then(uriToImage).catch(setUnknown);
         }
       } else {
         setUnknown();
